@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 360, in <module>
+    train(cfg)
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 274, in train
+    Z_list, yq_np = next(sampler)                     # ragged batch
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 118, in __next__
+    l_vec = self._sample_lengths()
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 94, in _sample_lengths
+    return np.full(self.n, int(max(1, self.l)), dtype=int)
+  File "/n/home05/mletey/.local/lib/python3.10/site-packages/numpy/core/numeric.py", line 344, in full
+    a = empty(shape, dtype, order)
+TypeError: expected a sequence of integers or a single integer, got '512.0'

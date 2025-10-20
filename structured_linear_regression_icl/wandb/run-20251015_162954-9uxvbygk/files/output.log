@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 360, in <module>
+    train(cfg)
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 274, in train
+    Z_list, yq_np = next(sampler)                     # ragged batch
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 118, in __next__
+    l_vec = self._sample_lengths()
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 97, in _sample_lengths
+    l_vec = self.length_sampler(self.n, self.l, self.rng).astype(int)
+  File "/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py", line 42, in sample_l_vec_asymmetric
+    choose_left = rng.random(n) < w
+  File "_generator.pyx", line 298, in numpy.random._generator.Generator.random
+  File "_common.pyx", line 307, in numpy.random._common.double_fill
+TypeError: expected a sequence of integers or a single integer, got '3072.0'

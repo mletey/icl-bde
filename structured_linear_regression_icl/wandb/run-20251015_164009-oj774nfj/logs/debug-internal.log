@@ -1,0 +1,8 @@
+{"time":"2025-10-15T16:40:10.43596203-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-15T16:40:10.81958765-04:00","level":"INFO","msg":"stream: created new stream","id":"oj774nfj"}
+{"time":"2025-10-15T16:40:10.819749296-04:00","level":"INFO","msg":"handler: started","stream_id":"oj774nfj"}
+{"time":"2025-10-15T16:40:10.820456132-04:00","level":"INFO","msg":"stream: started","id":"oj774nfj"}
+{"time":"2025-10-15T16:40:10.823029138-04:00","level":"INFO","msg":"writer: started","stream_id":"oj774nfj"}
+{"time":"2025-10-15T16:40:10.823053999-04:00","level":"INFO","msg":"sender: started","stream_id":"oj774nfj"}
+{"time":"2025-10-15T16:58:26.442516397-04:00","level":"ERROR","msg":"HTTP error","status":404,"method":"POST","url":"https://api.wandb.ai/files/mletey1/context_study_yaml/oj774nfj/file_stream"}
+{"time":"2025-10-15T16:58:26.442654962-04:00","level":"ERROR+4","msg":"filestream: fatal error: filestream: failed to upload: 404 Not Found path=files/mletey1/context_study_yaml/oj774nfj/file_stream: {\"error\":\"project mletey1/context_study_yaml not found while streaming file\"}"}

@@ -1,0 +1,3 @@
+/n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/run.py:279: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(device.type == "cuda" and cfg.amp)):
+wandb: WARNING Fatal error while uploading data. Some run data will not be synced, but it will still be written to disk. Use `wandb sync` at the end of the run to try uploading.

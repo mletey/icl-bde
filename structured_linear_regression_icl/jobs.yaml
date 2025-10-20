@@ -1,0 +1,22 @@
+# jobs.yaml
+defaults:
+  job_name: "linear_attn_grid"
+  account: "kempner_grads"
+  partition: "kempner_h100"
+  gres: "gpu:1"
+  cpus_per_gpu: 1
+  mem_per_gpu: "24G"
+  time: "01:00:00"
+  conda_env: "mytorchenv"
+  email: "maryletey@fas.harvard.edu"
+  cuda_module: "cuda/12.2"
+  base_cmd: "python run.py --project context_study_yaml --steps 2000 --d 32"
+
+# Lists define the grid (Cartesian product).
+grid:
+  tau: [0.5, 3]
+  alpha: [0.1, 1, 10]
+  variablecontext: [true, false]
+
+# Optional: extra static flags you always want to pass
+# extra_flags: ["--run_name AUTO", "--no-cudnn-benchmark"]

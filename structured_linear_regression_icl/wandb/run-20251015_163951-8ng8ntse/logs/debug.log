@@ -1,0 +1,27 @@
+2025-10-15 16:39:51,088 INFO    MainThread:766800 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-15 16:39:51,088 INFO    MainThread:766800 [wandb_setup.py:_flush():81] Configure stats pid to 766800
+2025-10-15 16:39:51,088 INFO    MainThread:766800 [wandb_setup.py:_flush():81] Loading settings from /n/home05/mletey/.config/wandb/settings
+2025-10-15 16:39:51,088 INFO    MainThread:766800 [wandb_setup.py:_flush():81] Loading settings from /n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/wandb/settings
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/wandb/run-20251015_163951-8ng8ntse/logs/debug.log
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /n/holystore01/LABS/pehlevan_lab/Lab/mletey/icl-bde/structured_linear_regression_icl/wandb/run-20251015_163951-8ng8ntse/logs/debug-internal.log
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_init.py:init():832] calling init triggers
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'project': 'context_study_yaml', 'run_name': '', 'steps': 2000, 'log_every': 25, 'eval_every': 100, 'd': 32, 'alpha': 1.0, 'variablecontext': True, 'tau': 0.5, 'rho': 0.01, 'functionality': 1.0, 'ctask': 'identity', 'lr': 0.001, 'weight_decay': 0.0, 'grad_clip': 1.0, 'seed': 0, 'cpu': False, 'amp': False, '_wandb': {}}
+2025-10-15 16:39:51,089 INFO    MainThread:766800 [wandb_init.py:init():880] starting backend
+2025-10-15 16:39:52,193 INFO    MainThread:766800 [wandb_init.py:init():883] sending inform_init request
+2025-10-15 16:39:52,228 INFO    MainThread:766800 [wandb_init.py:init():891] backend started and connected
+2025-10-15 16:39:52,229 INFO    MainThread:766800 [wandb_init.py:init():961] updated telemetry
+2025-10-15 16:39:52,245 INFO    MainThread:766800 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-15 16:39:52,830 INFO    MainThread:766800 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-15 16:39:54,063 INFO    MainThread:766800 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-15 16:39:54,063 INFO    MainThread:766800 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-15 16:39:54,063 INFO    MainThread:766800 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-15 16:39:54,063 INFO    MainThread:766800 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-15 16:39:54,099 INFO    MainThread:766800 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-15 16:39:54,100 INFO    MainThread:766800 [wandb_watch.py:_watch():68] Watching
+2025-10-15 16:42:01,341 INFO    MainThread:766800 [wandb_run.py:_finish():2275] finishing run mletey1/context_study_yaml/8ng8ntse
+2025-10-15 16:42:01,341 INFO    MainThread:766800 [wandb_run.py:_atexit_cleanup():2474] got exitcode: 0
+2025-10-15 16:42:01,342 INFO    MainThread:766800 [wandb_run.py:_restore():2456] restore
+2025-10-15 16:42:01,342 INFO    MainThread:766800 [wandb_run.py:_restore():2462] restore done
+2025-10-15 16:42:01,890 INFO    MainThread:766800 [wandb_run.py:_footer_sync_info():3872] logging synced files
