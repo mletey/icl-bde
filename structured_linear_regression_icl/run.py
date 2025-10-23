@@ -55,13 +55,14 @@ class FullTaskSampler:
     def __init__(
         self,
         d: int,
-        l: int,
+        l_1: int,
+        l_2: int,
         n: int,
         rho: float,
         Ctask: np.ndarray,
         *,
         functionality: float = 1.0,
-        length_sampler: Optional[Callable[[int, int, np.random.Generator], np.ndarray]] = None,
+        p: float = 1.0,
         seed: Optional[int] = None,
         nonvariable: int = 0,
     ) -> None:
@@ -77,27 +78,28 @@ class FullTaskSampler:
         seed: RNG seed
         """
         self.d = d
-        self.l = l
+        self.l_1 = l_1
+        self.l_2 = l_2
         self.n = n
         self.rho = rho
         self.Ctask = Ctask
         self.functionality = functionality
         self.rng = np.random.default_rng(seed)
-        self.length_sampler = length_sampler
+        self.p = p
         self.nonvariable = nonvariable
 
     def __iter__(self):
         return self
 
-    def _sample_lengths(self) -> np.ndarray:
-        if self.length_sampler is None:
-            return np.full(self.n, int(max(1, self.l)), dtype=int)
-        if self.nonvariable == 1:
-            return np.full(self.n, int(max(1, self.l)), dtype=int)
-        l_vec = self.length_sampler(self.n, self.l, self.rng).astype(int)
-        if np.any(l_vec < 1):
-            raise ValueError("All sampled context lengths must be >= 1.")
-        return l_vec
+    # def _sample_lengths(self) -> np.ndarray:
+    #     if self.length_sampler is None:
+    #         return np.full(self.n, int(max(1, self.l)), dtype=int)
+    #     if self.nonvariable == 1:
+    #         return np.full(self.n, int(max(1, self.l)), dtype=int)
+    #     l_vec = self.length_sampler(self.n, self.l, self.rng).astype(int)
+    #     if np.any(l_vec < 1):
+    #         raise ValueError("All sampled context lengths must be >= 1.")
+    #     return l_vec
 
     def _power_fn(self, x: np.ndarray) -> np.ndarray:
         """Apply signed power to keep outputs real for non-integer exponents."""
@@ -115,7 +117,7 @@ class FullTaskSampler:
           y_query: (n,) true query labels
         """
         d, n = self.d, self.n
-        l_vec = self._sample_lengths()
+        l_vec = np.where(np.random.rand(n) < self.p, self.l_1, self.l_2)
 
         # One task vector per sample
         ws = self.rng.multivariate_normal(mean=np.zeros(d), cov=self.Ctask, size=n)  # (n, d)
@@ -228,31 +230,30 @@ def train(cfg):
         diag = np.linspace(1.0, 0.1, cfg.d)
         C = np.diag(diag)
 
-    # Sampler
-    if cfg.variablecontext:
-        print("variable context sampling", flush = True)
-        sampler = FullTaskSampler(
-            d=cfg.d,
-            l=int(cfg.alpha * cfg.d),
-            n=int(cfg.tau * cfg.d * cfg.d),
-            rho=cfg.rho,
-            Ctask=C,
-            functionality=cfg.functionality,
-            length_sampler=sample_l_vec_asymmetric,  # plug your own if you like
-            seed=cfg.seed,
-        )
-    else:
-        print("fixed context sampling", flush = True)
-        sampler = FullTaskSampler(
-            d=cfg.d,
-            l=int(cfg.alpha * cfg.d),
-            n=int(cfg.tau * cfg.d * cfg.d),
-            rho=cfg.rho,
-            Ctask=C,
-            functionality=cfg.functionality,
-            length_sampler=None,  # plug your own if you like
-            seed=cfg.seed,
-        ) 
+
+    train_sampler = FullTaskSampler(
+        d=cfg.d,
+        l_1=int(cfg.alpha_1 * cfg.d),
+        l_2=int(cfg.alpha_2 * cfg.d),
+        n=int(cfg.tau * cfg.d * cfg.d),
+        rho=cfg.rho,
+        Ctask=C,
+        functionality=cfg.functionality,
+        p=cfg.p
+        seed=cfg.seed,
+    )
+
+    test_sampler = FullTaskSampler(
+        d=cfg.d,
+        l_1=int(cfg.alpha_1 * cfg.d),
+        l_2=int(cfg.alpha_2 * cfg.d),
+        n=int(cfg.tau * cfg.d * cfg.d),
+        rho=cfg.rho,
+        Ctask=C,
+        functionality=cfg.functionality,
+        p=cfg.p
+        seed=cfg.seed,
+    )
 
     # Model/opt
     model = BatchedLinearAttention(cfg.d).to(device)
